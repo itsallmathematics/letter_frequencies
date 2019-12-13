@@ -1,5 +1,5 @@
 #include "standard.h"
-#include "letter_frequencies.h"
+//#include "letter_frequencies.h"
 
 void print_stats(size_t *frequencies);
 void graph_frequencies(size_t *frequencies);
@@ -23,7 +23,7 @@ MAIN_A
         fprintf(stderr, "Failed to open file %s\n", argv[1]);
         REF;
     }
-    
+
     int c; //Needs to be int (not char) for EOF to work
     while((c = fgetc(fp)) != EOF)
     {
@@ -44,11 +44,11 @@ MAIN_A
         {
             frequencies[c - 97]++;
         }
-        
+
     }
 
     fclose(fp);
-    
+
     print_stats(frequencies);
     graph_frequencies(frequencies);
 
@@ -64,32 +64,11 @@ void print_stats(size_t *frequencies)
     }
 
     printf("==========FREQUENCIES==========\n"); //TODO: Create a macro for this with msg
-    printf("A: %lu\n", frequencies[0]);
-    printf("B: %lu\n", frequencies[1]);
-    printf("C: %lu\n", frequencies[2]);
-    printf("D: %lu\n", frequencies[3]);
-    printf("E: %lu\n", frequencies[4]);
-    printf("F: %lu\n", frequencies[5]);
-    printf("G: %lu\n", frequencies[6]);
-    printf("H: %lu\n", frequencies[7]);
-    printf("I: %lu\n", frequencies[8]);
-    printf("J: %lu\n", frequencies[9]);
-    printf("K: %lu\n", frequencies[10]);
-    printf("L: %lu\n", frequencies[11]);
-    printf("M: %lu\n", frequencies[12]);
-    printf("N: %lu\n", frequencies[13]);
-    printf("O: %lu\n", frequencies[14]);
-    printf("P: %lu\n", frequencies[15]);
-    printf("Q: %lu\n", frequencies[16]);
-    printf("R: %lu\n", frequencies[17]);
-    printf("S: %lu\n", frequencies[18]);
-    printf("T: %lu\n", frequencies[19]);
-    printf("U: %lu\n", frequencies[20]);
-    printf("V: %lu\n", frequencies[21]);
-    printf("W: %lu\n", frequencies[22]);
-    printf("X: %lu\n", frequencies[23]);
-    printf("Y: %lu\n", frequencies[24]);
-    printf("Z: %lu\n", frequencies[25]);
+
+    int i;
+    for ( i = 0; i < 26; i++ )
+      printf("%c: %lu\n", i+65, frequencies[i]); // Braces, i.e. {}, are actually just compound statements
+
     return;
 
 }
@@ -103,32 +82,13 @@ void graph_frequencies(size_t *frequencies)
     }
 
     printf("==========VISUAL==========\n"); //TODO: Create a macro for this with msg
-    printf("A: "); print_tally(frequencies[0]);
-    printf("B: "); print_tally(frequencies[1]);
-    printf("C: "); print_tally(frequencies[2]);
-    printf("D: "); print_tally(frequencies[3]);
-    printf("E: "); print_tally(frequencies[4]);
-    printf("F: "); print_tally(frequencies[5]);
-    printf("G: "); print_tally(frequencies[6]);
-    printf("H: "); print_tally(frequencies[7]);
-    printf("I: "); print_tally(frequencies[8]);
-    printf("J: "); print_tally(frequencies[9]);
-    printf("K: "); print_tally(frequencies[10]);
-    printf("L: "); print_tally(frequencies[11]);
-    printf("M: "); print_tally(frequencies[12]);
-    printf("N: "); print_tally(frequencies[13]);
-    printf("O: "); print_tally(frequencies[14]);
-    printf("P: "); print_tally(frequencies[15]);
-    printf("Q: "); print_tally(frequencies[16]);
-    printf("R: "); print_tally(frequencies[17]);
-    printf("S: "); print_tally(frequencies[18]);
-    printf("T: "); print_tally(frequencies[19]);
-    printf("U: "); print_tally(frequencies[20]);
-    printf("V: "); print_tally(frequencies[21]);
-    printf("W: "); print_tally(frequencies[22]);
-    printf("X: "); print_tally(frequencies[23]);
-    printf("Y: "); print_tally(frequencies[24]);
-    printf("Z: "); print_tally(frequencies[25]);
+
+    int i;
+    for ( i = 0; i < 26; i++ ) {
+      printf("%c: ", i+65);
+      print_tally(frequencies[i]);
+    }
+
     return;
 }
 
